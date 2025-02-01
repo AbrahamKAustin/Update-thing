@@ -9,7 +9,6 @@ def create_company(company: schemas.CompanyAdd, db: Session = Depends(database.g
     db_company = models.Company(
         ticker=company.ticker,
         name=company.name,
-        last_sale=company.last_sale,
         market_cap=company.market_cap,
         sector=company.sector,
         industry=company.industry,
@@ -36,3 +35,9 @@ def delete_company(ticker: str, db: Session = Depends(database.get_db)):
     db.delete(db_company)
     db.commit()
     return db_company
+
+@router.delete("/delete-all-companies/")
+def delete_all_companies(db: Session = Depends(database.get_db)):
+    db.query(models.Company).delete()
+    db.commit()
+    return {"detail": "All companies have been deleted"}

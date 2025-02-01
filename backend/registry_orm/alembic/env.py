@@ -22,7 +22,7 @@ if config.config_file_name is not None:
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 # Import your models here (use absolute import)
-from profiles_orm.models import Base  # Ensure this import is correct
+from registry_orm.models import Base  # Ensure this import is correct
 
 # Get database connection details from environment variables
 DATABASE_USER = os.getenv("POSTGRES_USER")
